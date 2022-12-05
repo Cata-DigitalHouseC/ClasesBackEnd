@@ -19,4 +19,8 @@ public class PacienteService{
         return pacienteIDao.guardar(paciente);
     }
 
+    public Paciente buscar(Integer id) {
+        return pacienteIDao.buscar(id);
+    }
+
 }

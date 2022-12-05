@@ -16,7 +16,13 @@ public class PacienteController {
 
     @PostMapping
     public Paciente registrarPaciente(@RequestBody Paciente paciente){ //RequestBody -> Lo que le envio
+
         return pacienteService.guardar(paciente);
+    }
+
+    @GetMapping("/{id}")
+    public Paciente getPaciente(@PathVariable Integer id){
+        return pacienteService.buscar(id);
     }
 
 

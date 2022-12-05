@@ -49,7 +49,7 @@ public class PacienteDaoH2 implements IDao<Paciente> {
     }
 
     @Override
-    public Paciente buscarPorId(int id) {
+    public Paciente buscar(int id) {
         return null;
     }
 
