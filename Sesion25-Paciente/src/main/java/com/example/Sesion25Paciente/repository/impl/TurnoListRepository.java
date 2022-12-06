@@ -2,10 +2,12 @@ package com.example.Sesion25Paciente.repository.impl;
 
 import com.example.Sesion25Paciente.model.Turno;
 import com.example.Sesion25Paciente.repository.IDao;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class TurnoListRepository implements IDao<Turno>
 {
     private List<Turno> listaTurnos;

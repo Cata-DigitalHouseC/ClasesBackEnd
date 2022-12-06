@@ -3,9 +3,11 @@ package com.example.Sesion25Paciente.service;
 import com.example.Sesion25Paciente.model.Odontologo;
 import com.example.Sesion25Paciente.repository.IDao;
 import com.example.Sesion25Paciente.repository.impl.OdontologoDaoH2;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class OdontologoService {
 
     private IDao<Odontologo> odontologoDao;

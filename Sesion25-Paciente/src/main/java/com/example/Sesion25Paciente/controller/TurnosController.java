@@ -7,6 +7,7 @@ import com.example.Sesion25Paciente.repository.impl.TurnoListRepository;
 import com.example.Sesion25Paciente.service.OdontologoService;
 import com.example.Sesion25Paciente.service.PacienteService;
 import com.example.Sesion25Paciente.service.TurnosService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +18,12 @@ import java.util.List;
 @RequestMapping("/turnos")
 public class TurnosController
 {
-    private PacienteService pacienteService = new PacienteService(new PacienteDaoH2());
-    private TurnosService turnoService = new TurnosService(new TurnoListRepository());
-    private OdontologoService odontologoService = new OdontologoService(new OdontologoDaoH2());
+    @Autowired
+    private PacienteService pacienteService;
+    @Autowired
+    private TurnosService turnoService;
+    @Autowired
+    private OdontologoService odontologoService;
 
     @PostMapping
     public ResponseEntity<Turno> registrarTurno(@RequestBody Turno turno)

@@ -3,11 +3,13 @@ package com.example.Sesion25Paciente.repository.impl;
 import com.example.Sesion25Paciente.model.Odontologo;
 import com.example.Sesion25Paciente.model.Paciente;
 import com.example.Sesion25Paciente.repository.IDao;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class OdontologoDaoH2 implements IDao<Odontologo> {
 
     @Override
