@@ -45,7 +45,39 @@ public class OdontologoDaoH2 implements IDao<Odontologo> {
 
     @Override
     public Odontologo buscar(int id) {
-        return null;
+        //log.debug("Buscando al Paciente con id = " + id);
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        Odontologo odontologo = null;
+        try {
+            //1 Levantar el driver y Conectarnos
+            Class.forName("org.h2.Driver");
+
+            connection = DriverManager.getConnection("jdbc:h2:~/test;PASSWORD=sa;USER=sa;INIT=RUNSCRIPT FROM 'create.sql' ");
+            //2 Crear una sentencia
+            preparedStatement = connection.prepareStatement("SELECT id,nombre,apellido, matricula FROM odontologos where id = ?");
+            preparedStatement.setInt(1, id);
+
+            //3 Ejecutar una sentencia SQL
+            ResultSet result = preparedStatement.executeQuery();
+
+            //4 Obtener resultados
+            while (result.next()) {
+                int idOdontologo = result.getInt("id");
+                String nombre = result.getString("nombre");
+                String apellido = result.getString("apellido");
+                int matricula = result.getInt("matricula");
+
+                odontologo = new Odontologo(idOdontologo, nombre, apellido, matricula);
+            }
+
+            preparedStatement.close();
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+            //log.error(throwables);
+        }
+
+        return odontologo;
     }
 
     @Override

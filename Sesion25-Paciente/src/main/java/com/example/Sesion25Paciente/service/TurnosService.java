@@ -4,6 +4,8 @@ import com.example.Sesion25Paciente.model.Turno;
 import com.example.Sesion25Paciente.repository.IDao;
 import com.example.Sesion25Paciente.repository.impl.TurnoListRepository;
 
+import java.util.List;
+
 public class TurnosService {
 
     private IDao<Turno> turnoListRepository;
@@ -14,5 +16,10 @@ public class TurnosService {
     public Turno guardar(Turno turno){
         //valido logica d enegocio
         return turnoListRepository.guardar(turno);
+    }
+
+
+    public List<Turno> listar() {
+        return turnoListRepository.buscarTodos();
     }
 }

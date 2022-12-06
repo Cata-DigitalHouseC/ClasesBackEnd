@@ -20,4 +20,8 @@ public class OdontologoService {
     public List<Odontologo> listar() {
         return odontologoDao.buscarTodos();
     }
+
+    public Odontologo buscar(Integer id) {
+        return odontologoDao.buscar(id);
+    }
 }

@@ -37,6 +37,6 @@ public class TurnoListRepository implements IDao<Turno>
 
     @Override
     public List<Turno> buscarTodos() {
-        return null;
+        return listaTurnos;
     }
 }
