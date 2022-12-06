@@ -8,6 +8,9 @@ public interface IDao<T> {
     public T buscar(int id);
     public T actualizar(T t);
     public void borrar(int id);
+
+    void eliminar(Integer id);
+
     public List<T> buscarTodos();
 
 }

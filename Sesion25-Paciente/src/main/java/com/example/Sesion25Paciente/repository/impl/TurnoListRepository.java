@@ -38,6 +38,11 @@ public class TurnoListRepository implements IDao<Turno>
     }
 
     @Override
+    public void eliminar(Integer id) {
+
+    }
+
+    @Override
     public List<Turno> buscarTodos() {
         return listaTurnos;
     }

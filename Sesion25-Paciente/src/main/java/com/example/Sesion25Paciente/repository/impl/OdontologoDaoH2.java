@@ -93,6 +93,11 @@ public class OdontologoDaoH2 implements IDao<Odontologo> {
     }
 
     @Override
+    public void eliminar(Integer id) {
+
+    }
+
+    @Override
     public List<Odontologo> buscarTodos() {
 
         List<Odontologo> listaOdontologos = new ArrayList<>();

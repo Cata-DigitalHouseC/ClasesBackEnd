@@ -15,9 +15,24 @@ public class TurnosService {
         this.turnoListRepository = turnoListRepository;
     }
 
+
     public Turno guardar(Turno turno){
         //valido logica d enegocio
-        return turnoListRepository.guardar(turno);
+        //Validar un solo turno asignado por paciente
+        if(buscarPorIdPaciente(turno.getPaciente().getId()) == null){
+            return turnoListRepository.guardar(turno);
+        }
+        return null;
+    }
+
+    private Turno buscarPorIdPaciente(Integer id) {
+        List<Turno> turnos = turnoListRepository.buscarTodos();
+        for (Turno turno : turnos) {
+            if(turno.getPaciente().getId().equals(id)){
+                return turno;
+            }
+        }
+        return null;
     }
 
 
