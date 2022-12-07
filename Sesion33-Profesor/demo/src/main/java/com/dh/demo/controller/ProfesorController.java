@@ -6,6 +6,7 @@ import com.dh.demo.service.ProfesorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,5 +29,11 @@ public class ProfesorController {
         //List<Profesor> profes = profesorService.buscarTodos();
         //profes.getAlumnos().forEach(alumno -> System.out.println(alumno.getNombre()));
         return ResponseEntity.ok(profesorService.buscarTodos());
+    }
+
+    //localhost:8081/profesor/Pablo
+    @GetMapping("/{nombre}")
+    public ResponseEntity<Profesor> buscarPorNombre(@PathVariable String nombre){
+        return ResponseEntity.ok(profesorService.buscarPorNombre(nombre));
     }
 }

@@ -11,6 +11,8 @@ public class Profesor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name = "nombreProfesor") //nombre en la tabla de esa columna, en HQL arroja error, porque es sobre los obj no sobre las tablas
     private String nombre;
     private String titulo;
 

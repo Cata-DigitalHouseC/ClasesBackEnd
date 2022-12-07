@@ -19,4 +19,8 @@ public class ProfesorService {
     public List<Profesor> buscarTodos() {
         return profesorRepository.findAll();
     }
+
+    public Profesor buscarPorNombre(String nombre) {
+        return profesorRepository.buscarPorNombre(nombre);
+    }
 }
