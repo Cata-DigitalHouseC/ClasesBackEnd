@@ -1,27 +1,27 @@
 package com.example.Sesion25Paciente.service;
 
-import com.example.Sesion25Paciente.model.Paciente;
-import com.example.Sesion25Paciente.repository.IDao;
-import com.example.Sesion25Paciente.repository.impl.PacienteDaoH2;
+import com.example.Sesion25Paciente.entities.Paciente;
+import com.example.Sesion25Paciente.repository.PacienteRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
+
 @Service
 public class PacienteService{
 
-    private IDao<Paciente> pacienteIDao;
+    private PacienteRepository pacienteIDao;
 
-    public PacienteService(PacienteDaoH2 pacienteDaoH2) {
+    public PacienteService(PacienteRepository pacienteRepository) {
 
-        this.pacienteIDao = pacienteDaoH2;
+        this.pacienteIDao = pacienteRepository;
     }
 
     public Paciente guardar(Paciente paciente) {
-        return pacienteIDao.guardar(paciente);
+        return pacienteIDao.save(paciente);
     }
 
-    public Paciente buscar(Integer id) {
-        return pacienteIDao.buscar(id);
+    public Optional<Paciente> buscar(Integer id) {
+        return pacienteIDao.findById(id);
     }
 
 }

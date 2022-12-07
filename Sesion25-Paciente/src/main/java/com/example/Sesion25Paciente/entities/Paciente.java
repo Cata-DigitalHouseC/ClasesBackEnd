@@ -1,18 +1,29 @@
-package com.example.Sesion25Paciente.model;
+package com.example.Sesion25Paciente.entities;
 
-public class Odontologo
-{
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+public class Paciente {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
     private String apellido;
-    private Integer matricula;
 
-    public Odontologo(Integer id, String nombre, String apellido, Integer matricula) {
+
+    /*
+    public Paciente(Integer id, String nombre, String apellido) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.matricula = matricula;
     }
+    */
+
+
 
     public Integer getId() {
         return id;
@@ -36,13 +47,5 @@ public class Odontologo
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
-    }
-
-    public Integer getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(Integer matricula) {
-        this.matricula = matricula;
     }
 }

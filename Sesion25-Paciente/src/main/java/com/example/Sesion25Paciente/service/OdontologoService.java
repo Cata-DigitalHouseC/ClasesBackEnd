@@ -1,29 +1,66 @@
 package com.example.Sesion25Paciente.service;
 
-import com.example.Sesion25Paciente.model.Odontologo;
-import com.example.Sesion25Paciente.repository.IDao;
-import com.example.Sesion25Paciente.repository.impl.OdontologoDaoH2;
+import com.example.Sesion25Paciente.dto.OdontologoDto;
+import com.example.Sesion25Paciente.entities.Odontologo;
+import com.example.Sesion25Paciente.repository.OdontologoRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OdontologoService {
 
-    private IDao<Odontologo> odontologoDao;
-    public OdontologoService(OdontologoDaoH2 odontologoDaoH2) {
-        this.odontologoDao = odontologoDaoH2;
+    @Autowired
+    private OdontologoRepository odontologoRepository;
+
+    @Autowired
+    ObjectMapper mapper;
+    public OdontologoService(OdontologoRepository odontologoRepository) {
+        this.odontologoRepository = odontologoRepository;
     }
 
-    public Odontologo guardar(Odontologo odontologo) {
-        return odontologoDao.guardar(odontologo);
+    public OdontologoDto guardar(OdontologoDto odontologo) {
+        //dto -> BO
+        //BO -> entity
+
+        //o simplemente dto -> Entity
+
+        Odontologo odontologoEntity = mapper.convertValue(odontologo, Odontologo.class);
+        Odontologo odontologoCreadoEntity = odontologoRepository.save(odontologoEntity);
+        OdontologoDto odontologoCreadoDto = mapper.convertValue(odontologoCreadoEntity, OdontologoDto.class);
+        return odontologoCreadoDto;
+    }
+
+    private Odontologo mapDtoToEntity(OdontologoDto odontologo) {
+        Odontologo odontologoEntity = new Odontologo();
+        odontologoEntity.setMatricula(odontologo.matricula);
+        odontologoEntity.setNombre(odontologo.nombre);
+        odontologoEntity.setApellido(odontologo.apellido);
+        return odontologoEntity;
     }
 
     public List<Odontologo> listar() {
-        return odontologoDao.buscarTodos();
+        return odontologoRepository.findAll();
     }
 
-    public Odontologo buscar(Integer id) {
-        return odontologoDao.buscar(id);
+    public Optional<Odontologo> buscar(Integer id) {
+        return odontologoRepository.findById(id);
+    }
+    //Optional envuelve al obj y le agrega mas capacidades
+
+    public Odontologo actualizar(Integer id, OdontologoDto odontologoDto) {
+        //OJO no devolder la entidad
+        Optional<Odontologo> odontologoOptional = buscar(id);
+
+        if(odontologoOptional.isPresent()) {
+            odontologoOptional.get().setNombre(odontologoDto.nombre != null ? odontologoDto.nombre:odontologoOptional.get().getNombre());
+            odontologoOptional.get().setApellido(odontologoDto.apellido != null ? odontologoDto.apellido:odontologoOptional.get().getApellido());
+            odontologoOptional.get().setMatricula(odontologoDto.matricula != null ? odontologoDto.matricula:odontologoOptional.get().getMatricula());
+
+        }
+        return odontologoRepository.save(odontologoOptional.get());
     }
 }

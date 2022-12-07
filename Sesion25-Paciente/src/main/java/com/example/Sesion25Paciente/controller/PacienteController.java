@@ -1,8 +1,8 @@
 package com.example.Sesion25Paciente.controller;
 
-import com.example.Sesion25Paciente.model.Paciente;
-import com.example.Sesion25Paciente.repository.impl.PacienteDaoH2;
+import com.example.Sesion25Paciente.entities.Paciente;
 import com.example.Sesion25Paciente.service.PacienteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.*;
 public class PacienteController {
 
 
-    private PacienteService pacienteService = new PacienteService(new PacienteDaoH2());
+    @Autowired
+    private PacienteService pacienteService;
 
     @PostMapping
     public Paciente registrarPaciente(@RequestBody Paciente paciente){ //RequestBody -> Lo que le envio
@@ -22,7 +23,7 @@ public class PacienteController {
 
     @GetMapping("/{id}")
     public Paciente getPaciente(@PathVariable Integer id){
-        return pacienteService.buscar(id);
+        return pacienteService.buscar(id).get();
     }
 
 

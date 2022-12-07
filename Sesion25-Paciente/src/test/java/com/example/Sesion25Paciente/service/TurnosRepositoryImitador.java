@@ -1,9 +1,8 @@
 package com.example.Sesion25Paciente.service;
 
-import com.example.Sesion25Paciente.model.Odontologo;
-import com.example.Sesion25Paciente.model.Paciente;
-import com.example.Sesion25Paciente.model.Turno;
-import com.example.Sesion25Paciente.repository.IDao;
+import com.example.Sesion25Paciente.entities.Odontologo;
+import com.example.Sesion25Paciente.entities.Paciente;
+import com.example.Sesion25Paciente.entities.Turno;
 
 import java.util.ArrayList;
 import java.util.Arrays;

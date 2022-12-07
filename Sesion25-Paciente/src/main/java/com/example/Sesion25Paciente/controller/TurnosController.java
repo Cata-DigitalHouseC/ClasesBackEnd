@@ -1,9 +1,7 @@
 package com.example.Sesion25Paciente.controller;
 
-import com.example.Sesion25Paciente.model.Turno;
-import com.example.Sesion25Paciente.repository.impl.OdontologoDaoH2;
-import com.example.Sesion25Paciente.repository.impl.PacienteDaoH2;
-import com.example.Sesion25Paciente.repository.impl.TurnoListRepository;
+import com.example.Sesion25Paciente.dto.TurnoDto;
+import com.example.Sesion25Paciente.entities.Turno;
 import com.example.Sesion25Paciente.service.OdontologoService;
 import com.example.Sesion25Paciente.service.PacienteService;
 import com.example.Sesion25Paciente.service.TurnosService;
@@ -26,13 +24,13 @@ public class TurnosController
     private OdontologoService odontologoService;
 
     @PostMapping
-    public ResponseEntity<Turno> registrarTurno(@RequestBody Turno turno)
+    public ResponseEntity<TurnoDto> registrarTurno(@RequestBody TurnoDto turno)
     {
         Turno turnoGuardado = null;
-        ResponseEntity<Turno> response;
+        ResponseEntity<TurnoDto> response;
 
-        if(pacienteService.buscar(turno.getPaciente().getId()) == null
-                && odontologoService.buscar(turno.getOdontologo().getId()) == null)
+        if(pacienteService.buscar(turno.pacienteId) == null
+                && odontologoService.buscar(turno.odontologoId) == null)
 
         {
             response = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
