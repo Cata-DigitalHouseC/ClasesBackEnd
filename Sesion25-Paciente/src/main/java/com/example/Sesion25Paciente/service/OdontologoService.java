@@ -2,9 +2,11 @@ package com.example.Sesion25Paciente.service;
 
 import com.example.Sesion25Paciente.dto.OdontologoDto;
 import com.example.Sesion25Paciente.entities.Odontologo;
+import com.example.Sesion25Paciente.exception.ResourceNotFoundException;
 import com.example.Sesion25Paciente.repository.OdontologoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -62,5 +64,23 @@ public class OdontologoService {
 
         }
         return odontologoRepository.save(odontologoOptional.get());
+    }
+
+    public void eliminar(Integer id) throws ResourceNotFoundException {
+
+        if(!buscar(id).isPresent()){
+            throw new ResourceNotFoundException("No se encontro el odontologo con el id: " + id); //o SQLException
+        }
+        odontologoRepository.deleteById(id);
+
+        /*
+        Optional<Odontologo> odontologoOptional = buscar(id);
+        if(odontologoOptional.isPresent()) {
+            odontologoRepository.delete(odontologoOptional.get());
+            return ResponseEntity.ok("Odontologo eliminado");
+        }
+        return ResponseEntity.notFound().build();
+
+         */
     }
 }

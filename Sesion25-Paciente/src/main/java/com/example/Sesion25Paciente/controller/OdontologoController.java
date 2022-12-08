@@ -2,8 +2,10 @@ package com.example.Sesion25Paciente.controller;
 
 import com.example.Sesion25Paciente.dto.OdontologoDto;
 import com.example.Sesion25Paciente.entities.Odontologo;
+import com.example.Sesion25Paciente.exception.ResourceNotFoundException;
 import com.example.Sesion25Paciente.service.OdontologoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,6 +43,12 @@ public class OdontologoController
     public ResponseEntity<OdontologoDto> modificarOdontologo(@PathVariable Integer id, @RequestBody OdontologoDto odontologoDto)
     {
         return ResponseEntity.ok(mapEntityToDto(odontologoService.actualizar(id, odontologoDto)));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> eliminar(@PathVariable Integer id) throws ResourceNotFoundException {
+        odontologoService.eliminar(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Odontologo eliminado");
     }
 
 
