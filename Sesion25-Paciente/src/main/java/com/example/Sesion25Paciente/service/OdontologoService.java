@@ -24,6 +24,12 @@ public class OdontologoService {
         this.odontologoRepository = odontologoRepository;
     }
 
+    //si dto null?
+    // si nombre esta vacio?  ""
+    //si nombre esta null? null
+    // matricula 0 o negativa o null o "" "  "
+    //BADREQUEST con mensajes personalizados
+
     public OdontologoDto guardar(OdontologoDto odontologo) {
         //dto -> BO
         //BO -> entity
@@ -48,6 +54,8 @@ public class OdontologoService {
         return odontologoRepository.findAll();
     }
 
+
+    //ojo con propagar una entidad al controller!
     public Optional<Odontologo> buscar(Integer id) {
         return odontologoRepository.findById(id);
     }
