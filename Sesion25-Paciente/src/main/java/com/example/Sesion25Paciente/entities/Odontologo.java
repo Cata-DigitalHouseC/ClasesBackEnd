@@ -1,7 +1,12 @@
 package com.example.Sesion25Paciente.entities;
 
 
-import jakarta.persistence.*;
+import javax.persistence.Id;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "odontologo")
@@ -14,6 +19,7 @@ public class Odontologo
     private String nombre;
     private String apellido;
     private Integer matricula;
+
 
     public Odontologo(Integer id, String nombre, String apellido, Integer matricula) {
         this.id = id;
@@ -54,4 +60,5 @@ public class Odontologo
     public void setMatricula(Integer matricula) {
         this.matricula = matricula;
     }
+
 }

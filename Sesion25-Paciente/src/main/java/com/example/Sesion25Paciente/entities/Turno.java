@@ -1,7 +1,10 @@
 package com.example.Sesion25Paciente.entities;
 
-import jakarta.persistence.*;
 
+
+import javax.persistence.Id;
+
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
